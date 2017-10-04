@@ -48,10 +48,10 @@ let rotas = {
     })
   },
   '/describe': function() {
-    return new Promise(resove => {
+    return new Promise(resolve => {
       let tipo = {}
       let metodo = {}
-
+      console.log('aqui...')
       tipo = tipos
       for (let m in metodos) {
         let _m = JSON.parse(JSON.stringify(metodos[m]))
@@ -80,7 +80,7 @@ function requestListener(request, response) {
     let body = buf !== null ? buf.toString() : null
     if (rotas[pathname]) {
       let compute = rotas[pathname].call(null, body)
-      if (!(comput instanceof Promise)) {
+      if (!(compute instanceof Promise)) {
         response.statusCode = 500
         response.end('Oops! erro no servidor.')
         console.warn('O retorno não foi uma promessa.')
@@ -101,3 +101,4 @@ function requestListener(request, response) {
 }
 
 server.listen(PORT)
+console.log(`Executando na porta: ${PORT}`)
