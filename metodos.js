@@ -35,7 +35,7 @@ let metodos = {
     liberado: false,
     descricao: 'Busca lista de usuarios',
     parametros: [],
-    retorno: [listausuarios],
+    retorno: ['listausuarios'],
     exec() {
       return new Promise((resolve) => {
         resolve(db.usuarios.buscarTodos() || {})
